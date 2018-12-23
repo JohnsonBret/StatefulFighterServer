@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Made with Thimble</title>
+    <link rel="stylesheet" href="fight_style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Welcome to State vs. Stateless Battle!</h1>
+    <p>Choose a programming paradigm to run!</p>
+    
+    
+    
+    <button class="button" onclick="StatefulBattle()">Stateful Battle</button>
+    
+    <div id="uiRoot">
+      <div id="uiHero">
+        <p id="heroHpText"></p>
+       <img src="https://banner2.kisspng.com/20180414/awe/kisspng-digital-art-knight-pixel-5ad19b2d6fcb93.1645594715236861894579.jpg">
+        <div id="heroHpParent">
+          <div id="heroHp"></div>
+        </div>
+      </div>
+      <div id="uiVillain">
+        <p id="villianHpText"></p>
+        <img src="https://images.cdn4.stockunlimited.net/preview1300/pixel-art-mythical-dragon_1959546.jpg">
+        <div id="VillainHpParent">
+          <div id="VillainHp"></div>
+        </div>
+      </div>
+    
+    </div>
+    
+    <div id="battleRoot"></div>
+    <script src="fight_script.js"></script>
+  </body>
+ 
+</html>

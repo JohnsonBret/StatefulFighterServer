@@ -1,0 +1,101 @@
+/* Fonts from Google Fonts - more at https://fonts.google.com */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700');
+
+body {
+ background-color: #155040;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  
+}
+
+p{
+  font-size: 20px;
+}
+
+.button
+{
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  padding: 7px 15px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#uiRoot{
+  display: flex;
+  justify-content: space-between;
+}
+
+#uiHero{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-basis: 45%;
+}
+
+#uiHero img{
+  width: 80%;
+}
+
+#heroHpParent{
+  width: 80%;
+  height: 20px;
+  background-color: #ff2727;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+}
+
+#heroHp{
+  background-color: #36ff36;
+  height: 90%;
+  width: 98%;
+  border-radius: 10px;
+}
+
+#uiVillain{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-basis: 45%;
+}
+
+
+#uiVillain img{
+  width: 80%;
+}
+
+#VillainHpParent{
+  width: 80%;
+  height: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #ff2727;
+  border-radius: 10px;
+
+}
+
+#VillainHp{
+  background-color: #36ff36;
+  height: 90%;
+  width: 100%;
+  border-radius: 10px;
+}
+
+#battleRoot{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+

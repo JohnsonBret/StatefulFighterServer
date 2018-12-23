@@ -1,0 +1,18 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    background: radial-gradient(#00FF00 40%, #0000FF);
+}
+
+main{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    justify-content: center;
+    align-content: center;
+}
+
+img{
+    width: 400px;
+}
