@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'TPV123456',
+    password: '(Mauser98)',
     database: 'battle_data'
 })
 
@@ -55,12 +55,23 @@ app.get('/results', function(req, res){
           console.log("1 record inserted");
     });
 
+    //Dry it up
     connection.query("SELECT winner, COUNT(winner) as total FROM stats GROUP BY winner", function (err, result, fields) {
         if (err) throw err;
         console.log(result);
         res.send(result);
     });
 
+});
+
+app.get('/stats', function(req, res){
+
+    //Dry it up
+    connection.query("SELECT winner, COUNT(winner) as total FROM stats GROUP BY winner", function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        res.send(result);
+    });
 });
 
 app.get('/fight_script.js', function(req, res){

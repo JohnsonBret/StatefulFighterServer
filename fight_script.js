@@ -25,6 +25,7 @@ function StartBattle()
   setHeroAndVillainStartingHealth();
   LogStartingHealth();
   initalizeHealthBar();
+  GetInitialWinLossStatsFromDB();
   setTimeout(FightBattle, startDelay);
 }
 
@@ -211,13 +212,37 @@ function SendBattleResultsToServer(winner, heroHealth, villianHealth)
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      console.log("Got Request Response")
-      console.log(xhttp.response);
+      console.log("Got XMLHTTP Request Response")
+      addDatabaseResponseToStats(xhttp.response);
     }
   };
   xhttp.open("GET", `http://localhost:8080/results?winner=${winner}&heroHealth=${heroHealth}&villianHealth=${villianHealth}`, true);
   xhttp.send();
-  console.log("Request Sent")
+  console.log("XMLHTTP Request Sent")
+}
+
+function GetInitialWinLossStatsFromDB()
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log("Got XMLHTTP Request Response")
+      addDatabaseResponseToStats(xhttp.response);
+    }
+  };
+  xhttp.open("GET", `http://localhost:8080/stats`, true);
+  xhttp.send();
+  console.log("XMLHTTP Request Sent")
+}
+
+function addDatabaseResponseToStats(response)
+{
+  console.log(JSON.parse(response));
+  var responseJSON = JSON.parse(response);
+
+  clearStatsChildren();
+  addHtmlToStats("h2", `Hero Wins: ${responseJSON[0].total}`);
+  addHtmlToStats("h2", `Villian Wins: ${responseJSON[1].total}`);
 }
 
 //*****************************************
@@ -282,6 +307,13 @@ function addHtmlToBattleRoot(element, textValue)
   document.getElementById("battleRoot").appendChild(element);
 }
 
+function addHtmlToStats(element, textValue)
+{
+  var element = document.createElement(element);
+  element.textContent = textValue;
+  document.getElementById("statsContainer").appendChild(element);
+}
+
 function createHeadingHtml(textToWrite)
 {
   addHtmlToBattleRoot("h1", textToWrite);
@@ -297,6 +329,14 @@ function createParagraphHtml(textToWrite)
 function clearRootChildren()
 {
   var rootNode = document.getElementById("battleRoot");
+  while (rootNode.firstChild) {
+    rootNode.removeChild(rootNode.firstChild);
+  }
+}
+
+function clearStatsChildren()
+{
+  var rootNode = document.getElementById("statsContainer");
   while (rootNode.firstChild) {
     rootNode.removeChild(rootNode.firstChild);
   }

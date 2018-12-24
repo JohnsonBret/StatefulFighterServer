@@ -99,3 +99,11 @@ p{
   align-items: center;
 }
 
+#titleSection{
+  display: flex;
+}
+
+#titleSection div{
+  width: 50%;
+}
+
