@@ -107,3 +107,7 @@ p{
   width: 50%;
 }
 
+#statsContainer{
+  display: flex;
+}
+

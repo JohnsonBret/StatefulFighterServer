@@ -311,7 +311,7 @@ function addHtmlToStats(element, textValue)
 {
   var element = document.createElement(element);
   element.textContent = textValue;
-  document.getElementById("statsContainer").appendChild(element);
+  document.getElementById("stats").appendChild(element);
 }
 
 function createHeadingHtml(textToWrite)
@@ -336,7 +336,7 @@ function clearRootChildren()
 
 function clearStatsChildren()
 {
-  var rootNode = document.getElementById("statsContainer");
+  var rootNode = document.getElementById("stats");
   while (rootNode.firstChild) {
     rootNode.removeChild(rootNode.firstChild);
   }
