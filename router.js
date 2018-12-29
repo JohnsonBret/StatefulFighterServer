@@ -8,7 +8,7 @@ module.exports = function(app){
     var connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: '(Mauser98)',
+        password: 'HB123456',
         database: 'battle_data'
     })
 
@@ -32,15 +32,18 @@ module.exports = function(app){
         var heroHealth = req.query.heroHealth;
         var villianHealth = req.query.villianHealth;
         var winner = req.query.winner;
+
+        //Temp Remove this when we get our sessions handled
+        var user_id = 2;
     
         console.log(`results was requested with query 
         Winner: ${winner} 
         hero health Left ${heroHealth} 
         and villain health left ${villianHealth}`);
     
-        var sql = 'INSERT INTO stats (winner, hero_health_left, villian_health_left) VALUES (?)';
+        var sql = 'INSERT INTO stats (user_id, winner, hero_health_left, villian_health_left) VALUES (?)';
             console.log("Sql query is:", sql);
-            connection.query(sql, [[`${winner}`, `${heroHealth}`, `${villianHealth}`]], function (err, result) {
+            connection.query(sql, [[`${user_id}`,`${winner}`, `${heroHealth}`, `${villianHealth}`]], function (err, result) {
               if (err) throw err;
               console.log("1 record inserted");
         });
@@ -59,7 +62,17 @@ module.exports = function(app){
         //Dry it up
         connection.query("SELECT winner, COUNT(winner) as total FROM stats GROUP BY winner", function (err, result, fields) {
             if (err) throw err;
-            console.log(result);
+            // console.log(result);
+            res.send(result);
+        });
+    });
+
+    app.get('/chartData', function(req, res){
+    
+        //Dry it up
+        connection.query("SELECT id, winner, created_at FROM stats ORDER BY created_at", function (err, result, fields) {
+            if (err) throw err;
+            // console.log(result);
             res.send(result);
         });
     });
@@ -91,8 +104,7 @@ module.exports = function(app){
             connection.query(sql, [user_name], function (err, result) {
               if (err) throw err;
               console.log("1 record inserted");
+              res.redirect('/fight');
             });
-       
-        res.end("Added user? to Mysql?");
     });
 };

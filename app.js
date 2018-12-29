@@ -7,13 +7,12 @@ var mysql = require('mysql');
 var bodyParser = require("body-parser");
 
 const app = express();
-require('./router.js')(app);
-
 //Configure the App to use Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
+require('./router.js')(app);
 
 
 var server = app.listen(8080, function () {
